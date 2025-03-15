@@ -32,8 +32,12 @@
     </dependency>
     <dependency>
       <groupId>cn.solveplan</groupId>
-      <artifactId>peanut-task</artifactId>
+      <artifactId>peanut-sdk</artifactId>
       <version>${peanut.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-mail</artifactId>
     </dependency>
   </dependencies>
 
@@ -41,13 +45,7 @@
   <build>
     <finalName>app</finalName>
     <plugins>
-      <plugin>
-        <artifactId>spring-boot-maven-plugin</artifactId>
-        <configuration>
-          <includeSystemScope>true</includeSystemScope>
-        </configuration>
-        <groupId>org.springframework.boot</groupId>
-      </plugin>
+
       <plugin>
         <artifactId>maven-jar-plugin</artifactId>
         <configuration>
@@ -88,5 +86,10 @@
       </plugin>
     </plugins>
   </build>
-
+  <parent>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <groupId>org.springframework.boot</groupId>
+    <version>3.2.0</version>
+    <!--        <version>3.4.3</version>-->
+  </parent>
 </project>
