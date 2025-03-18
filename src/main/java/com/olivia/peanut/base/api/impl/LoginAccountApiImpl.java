@@ -156,8 +156,11 @@ public class LoginAccountApiImpl implements LoginAccountApi {
     LoginUserContext.ignoreTenantId();
     LoginAccount copy = $.copy(req, LoginAccount.class);
     copy.setId(IdWorker.getId());
+    String newPwd = RandomUtil.randomString(10);
+    String pwd = MD5.create().digestHex(newPwd).toUpperCase();
+    copy.setUserPwd(pwd);
     this.loginAccountService.save(copy);
-    return new InsertRes().setId(copy.getId());
+    return new InsertRes().setId(copy.getId()).setNewPwd(newPwd);
   }
 
   @Override

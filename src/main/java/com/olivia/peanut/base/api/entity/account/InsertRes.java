@@ -13,4 +13,5 @@ import lombok.experimental.Accessors;
 public class InsertRes {
 
   private Long id;
+  private String newPwd;
 }

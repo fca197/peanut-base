@@ -31,3 +31,9 @@
 
 # 项目技术/文档
 [项目文档/技术框架等](https://gitee.com/slsplatform/aps-end/blob/master/README.md)
+
+
+# 版本变更历史
+
+## 1.5.1
+1. 修复BUG
