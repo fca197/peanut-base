@@ -2,6 +2,7 @@ package com.olivia.peanut.base.api;
 
 import com.olivia.peanut.base.api.entity.account.*;
 import com.olivia.sdk.utils.DynamicsPage;
+import jakarta.validation.Valid;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -34,4 +35,7 @@ public interface LoginAccountApi {
   // updateDept
   @PostMapping("/loginAccount/updateDept")
   UpdateDeptRes updateDept(@RequestBody UpdateDeptReq req);
+
+  @PostMapping("/loginAccount/deleteByIdList")
+  DeleteByIdListRes deleteByIdList(@RequestBody @Valid DeleteByIdListReq req);
 }

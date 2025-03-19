@@ -188,4 +188,13 @@ public class LoginAccountApiImpl implements LoginAccountApi {
     }
     return new UpdateDeptRes();
   }
+
+  @Override
+  public DeleteByIdListRes deleteByIdList(DeleteByIdListReq req) {
+    if (CollUtil.isEmpty(req.getIdList())) {
+      return new DeleteByIdListRes().setSuccess(false);
+    }
+    boolean b = this.loginAccountService.removeBatchByIds(req.getIdList());
+    return new DeleteByIdListRes().setSuccess(b);
+  }
 }
