@@ -86,9 +86,8 @@ public class CalendarServiceImpl extends MPJBaseServiceImpl<CalendarMapper, Cale
     if (Objects.nonNull(obj)) {
       q.eq(Objects.nonNull(obj.getId()), Calendar::getId, obj.getId()).eq(Objects.nonNull(obj.getTenantId()), Calendar::getTenantId, obj.getTenantId())
           .eq(Objects.nonNull(obj.getFactoryId()), Calendar::getFactoryId, obj.getFactoryId())
-          .eq(StringUtils.isNoneBlank(obj.getCalendarName()), Calendar::getCalendarName, obj.getCalendarName())
+          .likeRight(StringUtils.isNoneBlank(obj.getCalendarName()), Calendar::getCalendarName, obj.getCalendarName())
           .eq(StringUtils.isNoneBlank(obj.getCalendarCode()), Calendar::getCalendarCode, obj.getCalendarCode())
-          .eq(StringUtils.isNoneBlank(obj.getCalendarDesc()), Calendar::getCalendarDesc, obj.getCalendarDesc())
           .eq(Objects.nonNull(obj.getCalendarDisabled()), Calendar::getCalendarDisabled, obj.getCalendarDisabled());
     }
 
