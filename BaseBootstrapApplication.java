@@ -1,4 +1,5 @@
 package com.olivia;
+
 import cn.hutool.system.SystemUtil;
 import com.google.ortools.Loader;
 import com.googlecode.aviator.AviatorEvaluator;
@@ -23,7 +24,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 //@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
 @SpringBootApplication
 @EnableTransactionManagement
-public class BaseAPSBootstrapApplication {
+
+public class BaseBootstrapApplication {
 
   static {
     // 非window下 加载 or-tools 库
@@ -39,10 +41,10 @@ public class BaseAPSBootstrapApplication {
 
   public static void main(String[] args) {
     try {
-      log.info(">>>>>>>  BaseAPSBootstrapApplication  start  >>>>>>>");
+      log.info(">>>>>>>  BaseBootstrapApplication  start  >>>>>>>");
 
-      SpringApplication.run(BaseAPSBootstrapApplication.class, args);
-      log.info(">>>>>>>  BaseAPSBootstrapApplication  start success >>>>>>>");
+      SpringApplication.run(BaseBootstrapApplication.class, args);
+      log.info(">>>>>>>  BaseBootstrapApplication  start success >>>>>>>");
       ServiceNotice.start();
     } catch (Exception e) {
       ServiceNotice.errorStop(e);
