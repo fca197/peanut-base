@@ -59,12 +59,18 @@
 
 
   <build>
-    <finalName>app</finalName>
     <plugins>
 
       <plugin>
         <artifactId>maven-jar-plugin</artifactId>
         <configuration>
+            <excludes>
+              <!-- 排除 src/main/resources 目录下的所有 .properties 和 .xml 文件 -->
+<!--              <exclude>**/*.properties</exclude>-->
+              <exclude>**/*.yml</exclude>
+<!--              <exclude>**/*.yaml</exclude>-->
+              <exclude>**/*.xml</exclude>
+            </excludes>
           <archive>
             <manifest>
               <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
@@ -76,7 +82,6 @@
             </manifestEntries>
           </archive>
         </configuration>
-        <version>3.2.0</version>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
