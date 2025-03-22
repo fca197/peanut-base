@@ -4,8 +4,11 @@ import cn.hutool.core.io.FileUtil;
 import com.olivia.peanut.base.api.DbApi;
 import com.olivia.peanut.base.api.entity.db.DbResetReq;
 import com.olivia.peanut.base.api.entity.db.DbResetRes;
+import com.olivia.sdk.ann.RedissonLockAnn;
+import com.olivia.sdk.utils.DateUtils;
 import jakarta.annotation.Resource;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,8 +23,12 @@ import java.util.List;
 public class DbApiImpl implements DbApi {
   @Resource
   JdbcTemplate jdbcTemplate;
+  @Resource
+  StringRedisTemplate stringRedisTemplate;
+
 
   @Override
+  @RedissonLockAnn(lockPrefix = "db:reset", afterDeleteKey = false, isWait = false, lockTimeOut = 12 * 60 * 60 * 1000)
   public DbResetRes dbReset(DbResetReq req) {
 
     String path = "/opt/aps/db-init.sql";
@@ -38,6 +45,12 @@ public class DbApiImpl implements DbApi {
     // 执行 SQL 语句
     executeStatements(sqlStatements);
     return new DbResetRes().setFileSize(content.length());
+  }
+
+  @Override
+  public DbResetRes dbResetLast(DbResetReq req) {
+    Long expire = this.stringRedisTemplate.getExpire("db:reset:biz:all");
+    return new DbResetRes().setRemainingTime(DateUtils.formatSeconds(expire)).setExpire(expire);
   }
 
   private String readSqlFile(String sqlFilePath) throws IOException {

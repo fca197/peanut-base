@@ -69,7 +69,7 @@ public class LoginAccountApiImpl implements LoginAccountApi {
 
     LoginUserContext.ignoreTenantId(TRUE);
 
-    return RedisLockUtils.lock(peanutProperties.getRedisKey().getLoginLock() + ":" + req.getLoginPhone(), 5, TimeUnit.MINUTES,
+    return RedisLockUtils.lock(peanutProperties.getRedisKey().getLoginLock() + ":" + req.getLoginPhone(), 5000, false, true,
         () -> {
           LoginAccount loginAccount = loginAccountService.getOne(new LambdaQueryWrapper<LoginAccount>() //
               .eq(LoginAccount::getLoginPhone, req.getLoginPhone()).eq(LoginAccount::getUserPwd, req.getPwd()), false);

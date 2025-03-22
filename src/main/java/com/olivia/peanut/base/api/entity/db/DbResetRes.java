@@ -9,4 +9,6 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 public class DbResetRes {
   private int fileSize;
+  private String remainingTime;
+  private Long expire;
 }

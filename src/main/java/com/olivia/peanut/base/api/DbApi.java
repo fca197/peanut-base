@@ -9,4 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 public interface DbApi {
   @PostMapping("/db/reset")
   DbResetRes dbReset(@RequestBody @Valid DbResetReq req);
+
+  @PostMapping("/db/reset/last")
+  DbResetRes dbResetLast(@RequestBody @Valid DbResetReq req);
 }
