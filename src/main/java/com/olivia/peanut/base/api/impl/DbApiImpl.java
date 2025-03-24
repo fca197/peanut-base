@@ -33,7 +33,7 @@ public class DbApiImpl implements DbApi {
 
     String path = "/opt/aps/db-init.sql";
 
-    path = "/Users/wangbao/Downloads/db-init.sql";
+//    path = "/Users/wangbao/Downloads/db-init.sql";
 
     String content = FileUtil.readUtf8String(path);
     if (StringUtils.isBlank(content)) {
