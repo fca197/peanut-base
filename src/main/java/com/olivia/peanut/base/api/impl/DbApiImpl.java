@@ -31,7 +31,7 @@ public class DbApiImpl implements DbApi {
   @RedissonLockAnn(lockPrefix = "db:reset", afterDeleteKey = false, isWait = false, lockTimeOut = 12 * 60 * 60 * 1000)
   public DbResetRes dbReset(DbResetReq req) {
 
-    String path = "/opt/aps/db-init.sql";
+    String path = "/opt/app/db-init.sql";
 
 //    path = "/Users/wangbao/Downloads/db-init.sql";
 

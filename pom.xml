@@ -4,15 +4,13 @@
 
   <groupId>cn.solveplan</groupId>
   <artifactId>peanut-base</artifactId>
-  <version>1.5.2-SNAPSHOT</version>
+  <version>1.5.4-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>peanut-base</name>
   <url>http://maven.apache.org</url>
 
   <properties>
-
-    <peanut.version>1.5.1-SNAPSHOT</peanut.version>
     <java.version>21</java.version>
     <maven.compiler.source>21</maven.compiler.source>
     <maven.compiler.target>21</maven.compiler.target>
@@ -53,6 +51,12 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>
       <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.mapstruct</groupId>
+      <artifactId>mapstruct</artifactId>
+      <version>1.6.3</version>
+      <scope>provided</scope>
     </dependency>
 
   </dependencies>
