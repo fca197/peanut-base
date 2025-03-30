@@ -2,7 +2,8 @@ package com.olivia.peanut.base.converter;
 
 import com.olivia.peanut.base.api.entity.baseReportConfigUser.*;
 import com.olivia.peanut.base.model.BaseReportConfigUser;
-import org.mapstruct.*;
+import org.mapstruct.Mapper;
+import org.mapstruct.ReportingPolicy;
 import org.mapstruct.factory.Mappers;
 
 import java.util.List;
@@ -14,6 +15,8 @@ public interface BaseReportConfigUserConverter {
   BaseReportConfigUser insertReq(BaseReportConfigUserInsertReq req);
 
   BaseReportConfigUser updateReq(BaseReportConfigUserUpdateByIdReq req);
+
+  List<BaseReportConfigUser> updateListReq(List<BaseReportConfigUserUpdateByIdReq> req);
 
   List<BaseReportConfigUserDto> queryListRes(List<BaseReportConfigUser> list);
 

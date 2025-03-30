@@ -108,7 +108,7 @@ public class BaseReportConfigUserServiceImpl extends MPJBaseServiceImpl<BaseRepo
     );
 
 
-    q.orderByDesc(BaseReportConfigUser::getId);
+    q.orderByAsc(BaseReportConfigUser::getSortIndex);
     return q;
 
   }

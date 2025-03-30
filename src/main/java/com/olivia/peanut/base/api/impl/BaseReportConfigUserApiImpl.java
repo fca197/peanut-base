@@ -67,6 +67,12 @@ public class BaseReportConfigUserApiImpl implements BaseReportConfigUserApi {
 
   }
 
+  @Override
+  public BaseReportConfigUserUpdateByIdRes batchUpdateById(List<BaseReportConfigUserUpdateByIdReq> req) {
+    baseReportConfigUserService.updateBatchById(INSTANCE.updateListReq(req));
+    return null;
+  }
+
   public @Override DynamicsPage<BaseReportConfigUserExportQueryPageListInfoRes> queryPageList(BaseReportConfigUserExportQueryPageListReq req) {
     return baseReportConfigUserService.queryPageList(req);
   }

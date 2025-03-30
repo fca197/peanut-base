@@ -8,6 +8,7 @@ import com.olivia.peanut.base.api.entity.baseReportConfigUser.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 import com.olivia.sdk.ann.InsertCheck;
@@ -49,11 +50,15 @@ public interface BaseReportConfigUserApi {
   @PostMapping("/baseReportConfigUser/updateById")
   BaseReportConfigUserUpdateByIdRes updateById(@RequestBody @Validated(UpdateCheck.class) BaseReportConfigUserUpdateByIdReq req);
 
+  @PostMapping("/baseReportConfigUser/batch/updateById")
+  BaseReportConfigUserUpdateByIdRes batchUpdateById(@RequestBody @Validated(UpdateCheck.class) List<BaseReportConfigUserUpdateByIdReq> req);
+
   /**
    * 分页查询 报表配置用户配置
    */
   @PostMapping("/baseReportConfigUser/queryPageList")
   DynamicsPage<BaseReportConfigUserExportQueryPageListInfoRes> queryPageList(@RequestBody @Valid BaseReportConfigUserExportQueryPageListReq req);
+
   @PostMapping("/baseReportConfigUser/queryPageList/self")
   DynamicsPage<BaseReportConfigUserExportQueryPageListInfoRes> queryPageListSelf(@RequestBody @Valid BaseReportConfigUserExportQueryPageListReq req);
 
