@@ -1,5 +1,6 @@
 package com.olivia.peanut.base.service.impl;
 
+import com.olivia.sdk.utils.BaseEntity;
 import org.springframework.aop.framework.AopContext;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.github.yulichang.base.MPJBaseServiceImpl;
@@ -103,6 +104,7 @@ public class BaseReportConfigUserServiceImpl extends MPJBaseServiceImpl<BaseRepo
         , BaseReportConfigUser::getHeight //
         , BaseReportConfigUser::getReportName //
         , BaseReportConfigUser::getReportUrl //
+        , BaseEntity::getCreateBy
     );
 
 

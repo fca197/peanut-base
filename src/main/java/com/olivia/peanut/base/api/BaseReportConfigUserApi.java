@@ -54,6 +54,8 @@ public interface BaseReportConfigUserApi {
    */
   @PostMapping("/baseReportConfigUser/queryPageList")
   DynamicsPage<BaseReportConfigUserExportQueryPageListInfoRes> queryPageList(@RequestBody @Valid BaseReportConfigUserExportQueryPageListReq req);
+  @PostMapping("/baseReportConfigUser/queryPageList/self")
+  DynamicsPage<BaseReportConfigUserExportQueryPageListInfoRes> queryPageListSelf(@RequestBody @Valid BaseReportConfigUserExportQueryPageListReq req);
 
   /**
    * 导出 报表配置用户配置
