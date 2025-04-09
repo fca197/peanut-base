@@ -62,6 +62,8 @@ public class BaseResourceDto extends BaseEntityDto {
 //  @NotBlank(message = "菜单路径不能为空", groups = {InsertCheck.class, UpdateCheck.class})
   private String path;
 
+
+  private String vue3ResourceUrl;
 }
 
 
