@@ -63,7 +63,7 @@ public class BaseResourceDto extends BaseEntityDto {
   private String path;
 
 
-  private String vue3ResourceUrl;
+  private String nextLevelResourceUrl;
 }
 
 

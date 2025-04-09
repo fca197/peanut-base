@@ -55,6 +55,6 @@ public class BaseResource extends BaseEntity {
 
   private Integer sortIndex;
 
-  private String vue3ResourceUrl;
+  private String nextLevelResourceUrl;
 }
 
