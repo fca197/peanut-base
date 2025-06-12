@@ -102,7 +102,7 @@ public class BaseResourceServiceImpl extends MPJBaseServiceImpl<BaseResourceMapp
 
       ;
     }
-    q.orderByDesc(BaseResource::getId);
+    q.orderByDesc(BaseResource::getSortIndex);
     return q;
 
   }

@@ -14,8 +14,6 @@ import com.olivia.peanut.base.model.*;
 import com.olivia.peanut.base.service.*;
 import com.olivia.peanut.portal.api.entity.BaseEntityDto;
 import com.olivia.sdk.ann.Oplog;
-import com.olivia.sdk.ann.RedissonCacheAnn;
-import com.olivia.sdk.ann.RedissonLockAnn;
 import com.olivia.sdk.ann.Timed;
 import com.olivia.sdk.config.PeanutProperties;
 import com.olivia.sdk.filter.LoginUserContext;
@@ -66,7 +64,7 @@ public class LoginAccountApiImpl implements LoginAccountApi {
   @Override
   @Timed
 //  @Oplog(content = "登录", businessKey = "#req.loginPhone", url = "/loginPhonePwd", businessType = businessType, paramName = "登录入参")
-  @RedissonLockAnn(lockPrefix = "login", lockBizKeyFlag = "#req.loginPhone",afterDeleteKey = false,isWait = false)
+//  @RedissonLockAnn(lockPrefix = "login", lockBizKeyFlag = "#req.loginPhone",afterDeleteKey = false,isWait = false)
   public LoginPhonePwdRes loginPhonePwd(LoginPhonePwdReq req) {
 
     LoginUserContext.ignoreTenantId(TRUE);
@@ -196,5 +194,10 @@ public class LoginAccountApiImpl implements LoginAccountApi {
     }
     boolean b = this.loginAccountService.removeBatchByIds(req.getIdList());
     return new DeleteByIdListRes().setSuccess(b);
+  }
+
+  @Override
+  public SelectBaseResourceListRes selectBaseResourceList() {
+    return new SelectBaseResourceListRes().setDataList(this.loginAccountService.selectBaseResourceList());
   }
 }
