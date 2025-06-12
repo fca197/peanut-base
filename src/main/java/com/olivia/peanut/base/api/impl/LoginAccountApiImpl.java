@@ -66,7 +66,7 @@ public class LoginAccountApiImpl implements LoginAccountApi {
   @Override
   @Timed
 //  @Oplog(content = "登录", businessKey = "#req.loginPhone", url = "/loginPhonePwd", businessType = businessType, paramName = "登录入参")
-  @RedissonLockAnn(lockPrefix = "login", lockBizKeyFlag = "#req.loginPhone",afterDeleteKey = false)
+  @RedissonLockAnn(lockPrefix = "login", lockBizKeyFlag = "#req.loginPhone",afterDeleteKey = false,isWait = false)
   public LoginPhonePwdRes loginPhonePwd(LoginPhonePwdReq req) {
 
     LoginUserContext.ignoreTenantId(TRUE);
