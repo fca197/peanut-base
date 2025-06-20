@@ -13,7 +13,7 @@
 # 项目说明
 
 该模块可以单独启动， 也可以配合 peanut-portal增加多个模块一起启动。  
-单APS启动为启动 com.olivia.BaseAPSBootstrapApplication
+单APS启动为启动 tmp.BaseBootstrapApplication
 
 如需单独打包启动，增加spring-boot打包插件
 
