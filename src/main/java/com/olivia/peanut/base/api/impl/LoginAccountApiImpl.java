@@ -1,6 +1,7 @@
 package com.olivia.peanut.base.api.impl;
 
 import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.date.LocalDateTimeUtil;
 import cn.hutool.core.util.RandomUtil;
 import cn.hutool.crypto.digest.MD5;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
@@ -19,6 +20,10 @@ import com.olivia.sdk.config.PeanutProperties;
 import com.olivia.sdk.filter.LoginUserContext;
 import com.olivia.sdk.utils.*;
 import jakarta.annotation.Resource;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.temporal.TemporalUnit;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.transaction.annotation.Transactional;
@@ -78,7 +83,10 @@ public class LoginAccountApiImpl implements LoginAccountApi {
     String str = JSON.toJSONString(loginAccount);
     String key = peanutProperties.getRedisKey().getUserToken() + token;
     log.info("loginPhonePwd ,loginPhone: {} token: {} loginAccount: {}", req.getLoginPhone(), key, str);
-    stringRedisTemplate.opsForValue().set(key, str, 10, TimeUnit.DAYS);
+    long seconds = LocalDateTimeUtil.between(LocalDateTime.now(),
+            LocalDate.now().minusDays(2).atTime(LocalTime.MIN))
+        .getSeconds();
+    stringRedisTemplate.opsForValue().set(key, str, seconds, TimeUnit.SECONDS);
     return new LoginPhonePwdRes().setToken(token);
 
   }
