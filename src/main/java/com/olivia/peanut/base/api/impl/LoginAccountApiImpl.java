@@ -83,8 +83,8 @@ public class LoginAccountApiImpl implements LoginAccountApi {
     String str = JSON.toJSONString(loginAccount);
     String key = peanutProperties.getRedisKey().getUserToken() + token;
     log.info("loginPhonePwd ,loginPhone: {} token: {} loginAccount: {}", req.getLoginPhone(), key, str);
-    long seconds = LocalDateTimeUtil.between(LocalDateTime.now(),
-            LocalDate.now().minusDays(2).atTime(LocalTime.MIN))
+    long seconds = LocalDateTimeUtil.between(
+        LocalDate.now().minusDays(2).atTime(LocalTime.MIN),LocalDateTime.now())
         .getSeconds();
     stringRedisTemplate.opsForValue().set(key, str, seconds, TimeUnit.SECONDS);
     return new LoginPhonePwdRes().setToken(token);
