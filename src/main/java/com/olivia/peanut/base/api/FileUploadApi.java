@@ -1,13 +1,32 @@
 package com.olivia.peanut.base.api;
 
 
-import com.olivia.peanut.base.api.entity.fileUpload.*;
+import com.olivia.peanut.base.api.entity.fileUpload.FileUploadDeleteByIdListReq;
+import com.olivia.peanut.base.api.entity.fileUpload.FileUploadDeleteByIdListRes;
+import com.olivia.peanut.base.api.entity.fileUpload.FileUploadDownLoadReq;
+import com.olivia.peanut.base.api.entity.fileUpload.FileUploadExportQueryPageListInfoRes;
+import com.olivia.peanut.base.api.entity.fileUpload.FileUploadExportQueryPageListReq;
+import com.olivia.peanut.base.api.entity.fileUpload.FileUploadImportRes;
+import com.olivia.peanut.base.api.entity.fileUpload.FileUploadInsertReq;
+import com.olivia.peanut.base.api.entity.fileUpload.FileUploadInsertRes;
+import com.olivia.peanut.base.api.entity.fileUpload.FileUploadQueryByIdListReq;
+import com.olivia.peanut.base.api.entity.fileUpload.FileUploadQueryByIdListRes;
+import com.olivia.peanut.base.api.entity.fileUpload.FileUploadQueryListReq;
+import com.olivia.peanut.base.api.entity.fileUpload.FileUploadQueryListRes;
+import com.olivia.peanut.base.api.entity.fileUpload.FileUploadUpdateByIdReq;
+import com.olivia.peanut.base.api.entity.fileUpload.FileUploadUpdateByIdRes;
+import com.olivia.peanut.base.api.entity.fileUpload.GetFileBase64Req;
+import com.olivia.peanut.base.api.entity.fileUpload.GetFileBase64Res;
 import com.olivia.sdk.ann.InsertCheck;
 import com.olivia.sdk.ann.UpdateCheck;
 import com.olivia.sdk.utils.DynamicsPage;
 import jakarta.validation.Valid;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
@@ -26,7 +45,9 @@ public interface FileUploadApi {
   FileUploadInsertRes insert(@RequestBody @Validated(InsertCheck.class) FileUploadInsertReq req);
 
   @PostMapping("/fileUpload/insert")
-  FileUploadInsertRes insertByType(@RequestParam(name = "fileType", required = false) String fileType, @RequestParam("file") MultipartFile multipartFile);
+  FileUploadInsertRes insertByType(
+      @RequestParam(name = "fileType", required = false) String fileType,
+      @RequestParam("file") MultipartFile multipartFile);
 
   /**
    * 根据ID 删除
@@ -44,13 +65,15 @@ public interface FileUploadApi {
    * 根据ID 更新
    */
   @PostMapping("/fileUpload/updateById")
-  FileUploadUpdateByIdRes updateById(@RequestBody @Validated(UpdateCheck.class) FileUploadUpdateByIdReq req);
+  FileUploadUpdateByIdRes updateById(
+      @RequestBody @Validated(UpdateCheck.class) FileUploadUpdateByIdReq req);
 
   /**
    * 分页查询
    */
   @PostMapping("/fileUpload/queryPageList")
-  DynamicsPage<FileUploadExportQueryPageListInfoRes> queryPageList(@RequestBody @Valid FileUploadExportQueryPageListReq req);
+  DynamicsPage<FileUploadExportQueryPageListInfoRes> queryPageList(
+      @RequestBody @Valid FileUploadExportQueryPageListReq req);
 
   /**
    * 导出
@@ -74,6 +97,10 @@ public interface FileUploadApi {
 
   @PostMapping("/fileUpload/downLoad")
   void downLoadFile(@RequestBody @Valid FileUploadDownLoadReq req);
+
+
+  @GetMapping("/fileUpload/downLoad/path")
+  void downLoadFilePath(@RequestParam("path") String path);
 
   @PostMapping("/fileUpload/getFileBase64")
   GetFileBase64Res getFileBase64(@RequestBody @Valid GetFileBase64Req req);
