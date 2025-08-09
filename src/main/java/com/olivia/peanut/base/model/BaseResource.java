@@ -18,7 +18,7 @@ import lombok.experimental.Accessors;
 @Setter
 //@SuppressWarnings("serial")
 @TableName("base_resource")
-public class BaseResource extends BaseEntity {
+public class BaseResource extends BaseEntity<BaseResource> {
 
   /***
    *  菜单编码

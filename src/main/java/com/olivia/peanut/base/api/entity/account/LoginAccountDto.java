@@ -2,11 +2,10 @@ package com.olivia.peanut.base.api.entity.account;
 
 
 import com.olivia.peanut.portal.api.entity.BaseEntityDto;
+import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
-
-import java.util.List;
 
 /***
  *
@@ -28,5 +27,4 @@ public class LoginAccountDto extends BaseEntityDto {
   private String deptName;
 
   private List<Long> deptIds;
-  ;
 }

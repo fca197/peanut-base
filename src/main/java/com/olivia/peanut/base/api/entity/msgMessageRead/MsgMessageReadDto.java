@@ -1,9 +1,8 @@
 package com.olivia.peanut.base.api.entity.msgMessageRead;
 
+import java.time.LocalDateTime;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.time.LocalDateTime;
 
 /**
  * (MsgMessageRead)查询对象返回

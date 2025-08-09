@@ -8,14 +8,10 @@ import com.olivia.peanut.base.model.*;
 import com.olivia.peanut.base.service.*;
 import com.olivia.sdk.utils.RunUtils;
 import jakarta.annotation.Resource;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 
@@ -150,7 +146,6 @@ public class BasePreviewApiImpl implements BasePreviewApi {
 
     RunUtils.run("preview", runnableList);
 
-
     // 工厂配置
     List<SystemConfigPreviewRes.Info> list = new ArrayList<>();
     factoryListAtomic.get().forEach(f -> {
@@ -159,7 +154,10 @@ public class BasePreviewApiImpl implements BasePreviewApi {
       list.add(factoryInfo);
 
       // 班次
-      childrenList.add(new SystemConfigPreviewRes.Info().setName("班次信息").setChildren(shiftListAtomic.get().getOrDefault(f.getId(), List.of()).stream().map(shift -> new SystemConfigPreviewRes.Info().setName(shift.getShiftName()).setChildren(shiftItemListAtomic.get().getOrDefault(shift.getId(), List.of()).stream().map(t -> new SystemConfigPreviewRes.Info().setDesc(t.getBeginTime() + "/" + t.getBeginTime()).setChildren(List.of()).setName(t.getBeginTime() + "/" + t.getEndTime())).toList())).toList()));
+      childrenList.add(new SystemConfigPreviewRes.Info().setName("班次信息").setChildren(shiftListAtomic.get().getOrDefault(f.getId(), List.of()).stream().map(
+          shift -> new SystemConfigPreviewRes.Info().setName(shift.getShiftName()).setChildren(shiftItemListAtomic.get().getOrDefault(shift.getId(), List.of()).stream()
+              .map(t -> new SystemConfigPreviewRes.Info().setDesc(t.getBeginTime() + "/" + t.getBeginTime()).setChildren(List.of())
+                  .setName(t.getBeginTime() + "/" + t.getEndTime())).toList())).toList()));
       //工艺路径
 //      List<SystemConfigPreviewRes.Info> pathList = apsProcessPathAtomic.get().stream().map(path -> new SystemConfigPreviewRes.Info().setRefId(path.getId()).setName(path.getProcessPathName()).setChildren(apsProcessPathRoomAtomic.get().getOrDefault(path.getId(), List.of()).stream().map(t -> new SystemConfigPreviewRes.Info().setName(apsRoomAtomic.get().getOrDefault(t.getRoomId(), new ApsRoom()).getRoomName()).setChildren(apsRoomConfigMapAtomic.get().getOrDefault(t.getRoomId(), List.of()).stream().map(ct -> new SystemConfigPreviewRes.Info().setName(String.join("/", //
 //          apsRoomAtomic.get().getOrDefault(ct.getRoomId(), new ApsRoom()).getRoomName(), //
@@ -193,11 +191,12 @@ public class BasePreviewApiImpl implements BasePreviewApi {
     // 基本配置
     ArrayList<SystemConfigPreviewRes.Info> baseChildrenList = new ArrayList<>();
     SystemConfigPreviewRes.Info baseInfo = new SystemConfigPreviewRes.Info().setName("基本配置").setChildren(baseChildrenList);
-    baseChildrenList.add(new SystemConfigPreviewRes.Info().setName("角色").setChildren(roleAtomic.get().stream().map(t -> new SystemConfigPreviewRes.Info().setName(t.getRoleName())).toList()));
-    baseChildrenList.add(new SystemConfigPreviewRes.Info().setName("角色组").setChildren(roleGroupAtomic.get().stream().map(t -> new SystemConfigPreviewRes.Info().setName(t.getRoleGroupName())).toList()));
+    baseChildrenList.add(new SystemConfigPreviewRes.Info().setName("角色")
+        .setChildren(roleAtomic.get().stream().map(t -> new SystemConfigPreviewRes.Info().setName(t.getRoleName())).toList()));
+    baseChildrenList.add(new SystemConfigPreviewRes.Info().setName("角色组")
+        .setChildren(roleGroupAtomic.get().stream().map(t -> new SystemConfigPreviewRes.Info().setName(t.getRoleGroupName())).toList()));
 
     list.add(baseInfo);
-
 
     // 通用配置
     ArrayList<SystemConfigPreviewRes.Info> factoryCommonChildrenList = new ArrayList<>();

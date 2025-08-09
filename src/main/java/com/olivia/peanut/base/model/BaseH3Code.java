@@ -3,11 +3,10 @@ package com.olivia.peanut.base.model;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.olivia.sdk.utils.BaseEntity;
+import java.math.BigDecimal;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
-
-import java.math.BigDecimal;
 
 /**
  * H3对应的值(BaseH3Code)表实体类
@@ -20,7 +19,8 @@ import java.math.BigDecimal;
 @Setter
 //@SuppressWarnings("serial")
 @TableName("base_h3_code")
-public class BaseH3Code extends BaseEntity {
+public class BaseH3Code extends BaseEntity<BaseH3Code> {
+
   /***
    *  纬度
    */

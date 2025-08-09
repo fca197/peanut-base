@@ -4,9 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-
 /**
  * 报表配置(BaseReportConfig)保存返回
  *
@@ -18,6 +15,7 @@ import java.time.LocalDateTime;
 @Setter
 @SuppressWarnings("serial")
 public class BaseReportConfigInsertRes {
+
   /****
    * 写入行数
    */

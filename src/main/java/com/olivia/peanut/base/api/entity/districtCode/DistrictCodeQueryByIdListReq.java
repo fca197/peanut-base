@@ -1,10 +1,9 @@
 package com.olivia.peanut.base.api.entity.districtCode;
 
+import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
-
-import java.util.List;
 
 /**
  * (DistrictCode)查询对象入参

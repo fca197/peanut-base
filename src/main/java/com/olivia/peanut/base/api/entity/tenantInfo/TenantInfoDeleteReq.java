@@ -3,10 +3,9 @@ package com.olivia.peanut.base.api.entity.tenantInfo;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import java.util.List;
 import lombok.Data;
 import lombok.experimental.Accessors;
-
-import java.util.List;
 
 /**
  * 租户信息(TenantInfo)表实体类

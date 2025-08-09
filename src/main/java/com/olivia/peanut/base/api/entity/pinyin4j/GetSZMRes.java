@@ -8,6 +8,7 @@ import lombok.experimental.Accessors;
 @Getter
 @Accessors(chain = true)
 public class GetSZMRes {
+
   private String szmUpper;
   private String szmLower;
 }

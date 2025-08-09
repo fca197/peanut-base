@@ -18,7 +18,7 @@ import lombok.experimental.Accessors;
 @Setter
 //@SuppressWarnings("serial")
 @TableName("t_shift")
-public class Shift extends BaseEntity {
+public class Shift extends BaseEntity<Shift> {
 
   private String shiftCode;
   private String shiftName;

@@ -4,7 +4,6 @@ import com.github.yulichang.base.MPJBaseService;
 import com.olivia.peanut.base.api.entity.baseH3Code.*;
 import com.olivia.peanut.base.model.BaseH3Code;
 import com.olivia.sdk.utils.DynamicsPage;
-
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -15,6 +14,7 @@ import java.util.List;
  * @since 2024-11-19 16:09:19
  */
 public interface BaseH3CodeService extends MPJBaseService<BaseH3Code> {
+
   BaseH3CodeQueryListRes queryList(BaseH3CodeQueryListReq req);
 
   DynamicsPage<BaseH3CodeExportQueryPageListInfoRes> queryPageList(BaseH3CodeExportQueryPageListReq req);

@@ -1,11 +1,10 @@
 package com.olivia.peanut.base.api.entity.baseDept;
 
 import jakarta.validation.constraints.NotEmpty;
+import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
-
-import java.util.List;
 
 /**
  * 部门表(BaseDept)根据ID删除多个入参

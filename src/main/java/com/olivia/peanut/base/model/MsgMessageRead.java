@@ -3,11 +3,10 @@ package com.olivia.peanut.base.model;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.olivia.sdk.utils.BaseEntity;
+import java.time.LocalDateTime;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
-
-import java.time.LocalDateTime;
 
 /**
  * (MsgMessageRead)表实体类
@@ -20,7 +19,7 @@ import java.time.LocalDateTime;
 @Setter
 //@SuppressWarnings("serial")
 @TableName("msg_message_read")
-public class MsgMessageRead extends BaseEntity {
+public class MsgMessageRead extends BaseEntity<MsgMessageRead> {
 
   private Long userId;
   private LocalDateTime lastReadTime;

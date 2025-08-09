@@ -18,7 +18,7 @@ import lombok.experimental.Accessors;
 @Setter
 //@SuppressWarnings("serial")
 @TableName("base_dept")
-public class BaseDept extends BaseEntity {
+public class BaseDept extends BaseEntity<BaseDept> {
 
   /***
    *  部门编码

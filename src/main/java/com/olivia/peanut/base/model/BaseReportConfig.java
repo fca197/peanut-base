@@ -1,14 +1,11 @@
 package com.olivia.peanut.base.model;
 
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.olivia.sdk.utils.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
-import com.baomidou.mybatisplus.annotation.TableName;
 
 /**
  * 报表配置(BaseReportConfig)表实体类
@@ -21,7 +18,8 @@ import com.baomidou.mybatisplus.annotation.TableName;
 @Setter
 //@SuppressWarnings("serial")
 @TableName("base_report_config")
-public class BaseReportConfig extends BaseEntity {
+public class BaseReportConfig extends BaseEntity<BaseReportConfig> {
+
   /***
    *  报表名称
    */

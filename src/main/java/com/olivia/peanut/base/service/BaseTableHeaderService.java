@@ -1,10 +1,7 @@
 package com.olivia.peanut.base.service;
 
 import com.github.yulichang.base.MPJBaseService;
-import com.olivia.peanut.base.api.entity.baseTableHeader.BaseTableHeaderExportQueryPageListInfoRes;
-import com.olivia.peanut.base.api.entity.baseTableHeader.BaseTableHeaderExportQueryPageListReq;
-import com.olivia.peanut.base.api.entity.baseTableHeader.BaseTableHeaderQueryListReq;
-import com.olivia.peanut.base.api.entity.baseTableHeader.BaseTableHeaderQueryListRes;
+import com.olivia.peanut.base.api.entity.baseTableHeader.*;
 import com.olivia.peanut.base.model.BaseTableHeader;
 import com.olivia.sdk.utils.DynamicsPage;
 

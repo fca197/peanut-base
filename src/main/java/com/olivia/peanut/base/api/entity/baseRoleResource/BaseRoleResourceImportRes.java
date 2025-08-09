@@ -1,10 +1,9 @@
 package com.olivia.peanut.base.api.entity.baseRoleResource;
 
+import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
-
-import java.util.List;
 
 /**
  * 角色资源表(BaseRoleResource)保存返回

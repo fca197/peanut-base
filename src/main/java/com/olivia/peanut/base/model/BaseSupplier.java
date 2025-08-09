@@ -18,7 +18,7 @@ import lombok.experimental.Accessors;
 @Setter
 //@SuppressWarnings("serial")
 @TableName("base_supplier")
-public class BaseSupplier extends BaseEntity {
+public class BaseSupplier extends BaseEntity<BaseSupplier> {
 
   private String supplierName;
   private String supplierCode;

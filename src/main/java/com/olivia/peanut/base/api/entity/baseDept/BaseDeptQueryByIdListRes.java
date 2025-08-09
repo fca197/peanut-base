@@ -1,10 +1,9 @@
 package com.olivia.peanut.base.api.entity.baseDept;
 
+import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
-
-import java.util.List;
 
 /**
  * 部门表(BaseDept)查询对象返回

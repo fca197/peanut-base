@@ -1,7 +1,6 @@
 package com.olivia.peanut.base.service;
 
 import com.olivia.peanut.base.service.entity.SendMailReq;
-
 import java.util.List;
 
 public interface MailService {

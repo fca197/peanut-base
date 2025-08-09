@@ -18,7 +18,7 @@ import lombok.experimental.Accessors;
 @Setter
 //
 @TableName("t_calendar")
-public class Calendar extends BaseEntity {
+public class Calendar extends BaseEntity<Calendar> {
 
   /***
    *  所属工厂id

@@ -19,7 +19,7 @@ import lombok.experimental.Accessors;
 @Setter
 //
 @TableName("t_calendar_day")
-public class CalendarDay extends BaseEntity {
+public class CalendarDay extends BaseEntity<CalendarDay> {
 
   /***
    *  id

@@ -1,10 +1,9 @@
 package com.olivia.peanut.base.api.entity.baseApp;
 
+import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
-
-import java.util.List;
 
 /**
  * 应用表(BaseApp)查询对象返回

@@ -18,7 +18,7 @@ import lombok.experimental.Accessors;
 @Setter
 //@SuppressWarnings("serial")
 @TableName("t_file_upload")
-public class FileUpload extends BaseEntity {
+public class FileUpload extends BaseEntity<FileUpload> {
 
   private String fileName;
   private String fileType;

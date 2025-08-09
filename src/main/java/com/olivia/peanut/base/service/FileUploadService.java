@@ -1,10 +1,7 @@
 package com.olivia.peanut.base.service;
 
 import com.github.yulichang.base.MPJBaseService;
-import com.olivia.peanut.base.api.entity.fileUpload.FileUploadExportQueryPageListInfoRes;
-import com.olivia.peanut.base.api.entity.fileUpload.FileUploadExportQueryPageListReq;
-import com.olivia.peanut.base.api.entity.fileUpload.FileUploadQueryListReq;
-import com.olivia.peanut.base.api.entity.fileUpload.FileUploadQueryListRes;
+import com.olivia.peanut.base.api.entity.fileUpload.*;
 import com.olivia.peanut.base.model.FileUpload;
 import com.olivia.sdk.utils.DynamicsPage;
 

@@ -13,7 +13,7 @@ import lombok.experimental.Accessors;
 @Getter
 @Accessors(chain = true)
 @TableName("t_login_account")
-public class LoginAccount extends BaseEntity {
+public class LoginAccount extends BaseEntity<LoginAccount> {
 
   private String userName;
   private String loginPhone;

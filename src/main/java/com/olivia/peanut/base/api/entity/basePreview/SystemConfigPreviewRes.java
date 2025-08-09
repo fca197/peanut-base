@@ -1,10 +1,9 @@
 package com.olivia.peanut.base.api.entity.basePreview;
 
+import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
-
-import java.util.List;
 
 @Setter
 @Getter
@@ -17,6 +16,7 @@ public class SystemConfigPreviewRes {
   @Getter
   @Accessors(chain = true)
   public static class Info {
+
     Long refId;
     String name;
     Long value;

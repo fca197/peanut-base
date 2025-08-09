@@ -18,14 +18,13 @@ import com.olivia.sdk.comment.ServiceComment;
 import com.olivia.sdk.utils.$;
 import com.olivia.sdk.utils.DynamicsPage;
 import com.olivia.sdk.utils.FieldUtils;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * (DistrictCode)表服务实现类
@@ -76,7 +75,8 @@ public class DistrictCodeServiceImpl extends MPJBaseServiceImpl<DistrictCodeMapp
   @Override
   public Map<String, DistrictCode> getDistrictCodeMap(Collection<String> codeList) {
     if (CollUtil.isNotEmpty(codeList)) {
-      return this.list(new MPJLambdaWrapper<DistrictCode>().in(DistrictCode::getCode, codeList)).stream().collect(Collectors.toMap(DistrictCode::getCode, Function.identity()));
+      return this.list(new MPJLambdaWrapper<DistrictCode>().in(DistrictCode::getCode, codeList)).stream()
+          .collect(Collectors.toMap(DistrictCode::getCode, Function.identity()));
     }
     return Map.of();
   }
@@ -111,7 +111,8 @@ public class DistrictCodeServiceImpl extends MPJBaseServiceImpl<DistrictCodeMapp
     List<Object> codeList = list.stream().map(t -> selectTypeList.stream().map(s -> FieldUtils.getFieldValue(t, FieldUtils.getField(t, s.name()))).toList())
         .flatMap(List::stream).distinct().toList();
 
-    Map<String, String> codeNameMap = this.list(new LambdaQueryWrapper<DistrictCode>().in(DistrictCode::getCode, codeList)).stream().collect(Collectors.toMap(DistrictCode::getCode, DistrictCode::getName));
+    Map<String, String> codeNameMap = this.list(new LambdaQueryWrapper<DistrictCode>().in(DistrictCode::getCode, codeList)).stream()
+        .collect(Collectors.toMap(DistrictCode::getCode, DistrictCode::getName));
 
     list.forEach(v -> {
       selectTypeList.stream().forEach(s -> {

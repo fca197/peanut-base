@@ -18,7 +18,7 @@ import lombok.experimental.Accessors;
 @Setter
 //@SuppressWarnings("serial")
 @TableName("base_role_group")
-public class BaseRoleGroup extends BaseEntity {
+public class BaseRoleGroup extends BaseEntity<BaseRoleGroup> {
 
   /***
    *  角色组编码

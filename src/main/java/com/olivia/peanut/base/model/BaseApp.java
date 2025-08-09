@@ -18,7 +18,7 @@ import lombok.experimental.Accessors;
 @Setter
 //@SuppressWarnings("serial")
 @TableName("base_app")
-public class BaseApp extends BaseEntity {
+public class BaseApp extends BaseEntity<BaseApp> {
 
   /***
    *  app编码

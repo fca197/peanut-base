@@ -1,10 +1,9 @@
 package com.olivia.peanut.base.api.entity.msgMessageRead;
 
+import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
-
-import java.util.List;
 
 /**
  * (MsgMessageRead)保存返回

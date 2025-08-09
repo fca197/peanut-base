@@ -1,10 +1,7 @@
 package com.olivia.peanut.base.service;
 
 import com.github.yulichang.base.MPJBaseService;
-import com.olivia.peanut.base.api.entity.tenantInfo.TenantInfoExportQueryPageListInfoRes;
-import com.olivia.peanut.base.api.entity.tenantInfo.TenantInfoExportQueryPageListReq;
-import com.olivia.peanut.base.api.entity.tenantInfo.TenantInfoQueryListReq;
-import com.olivia.peanut.base.api.entity.tenantInfo.TenantInfoQueryListRes;
+import com.olivia.peanut.base.api.entity.tenantInfo.*;
 import com.olivia.peanut.base.model.TenantInfo;
 import com.olivia.sdk.utils.DynamicsPage;
 

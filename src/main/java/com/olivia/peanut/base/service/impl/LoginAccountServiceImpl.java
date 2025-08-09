@@ -11,13 +11,12 @@ import com.olivia.sdk.filter.LoginUser;
 import com.olivia.sdk.filter.LoginUserContext;
 import com.olivia.sdk.utils.$;
 import jakarta.annotation.Resource;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
-
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 
 /***
  *
@@ -49,7 +48,8 @@ public class LoginAccountServiceImpl extends ServiceImpl<LoginAccountMapper, Log
   public List<BaseResourceDto> selectBaseResourceList() {
 
     LoginUser loginUser = LoginUserContext.getLoginUser();
-    Set<Long> userRoleIdSet = baseUserRoleService.list(new LambdaQueryWrapper<BaseUserRole>().select(BaseUserRole::getRoleId).eq(BaseUserRole::getUserId, loginUser.getId()))
+    Set<Long> userRoleIdSet = baseUserRoleService.list(
+            new LambdaQueryWrapper<BaseUserRole>().select(BaseUserRole::getRoleId).eq(BaseUserRole::getUserId, loginUser.getId()))
         .stream().map(BaseUserRole::getRoleId).collect(Collectors.toSet());
     log.info("loginUser :{} userRoleIdSet:{}", loginUser.getLoginPhone(), userRoleIdSet);
     Set<Long> resourceIdSet = new HashSet<>();

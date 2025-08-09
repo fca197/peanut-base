@@ -1,35 +1,27 @@
 package com.olivia.peanut.base.service.impl;
 
-import org.springframework.aop.framework.AopContext;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.github.yulichang.base.MPJBaseServiceImpl;
 import com.github.yulichang.wrapper.MPJLambdaWrapper;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
-import jakarta.annotation.Resource;
-import com.olivia.sdk.utils.$;
-import com.olivia.sdk.utils.LambdaQueryUtil;
-import com.olivia.sdk.utils.DynamicsPage;
-
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
-
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import com.olivia.peanut.base.api.entity.baseReportConfig.*;
+import com.olivia.peanut.base.converter.BaseReportConfigConverter;
 import com.olivia.peanut.base.mapper.BaseReportConfigMapper;
 import com.olivia.peanut.base.model.BaseReportConfig;
-import com.olivia.peanut.base.converter.BaseReportConfigConverter;
 import com.olivia.peanut.base.service.BaseReportConfigService;
-import cn.hutool.core.collection.CollUtil;
 import com.olivia.peanut.base.service.BaseTableHeaderService;
-
-import com.olivia.peanut.base.api.entity.baseReportConfig.*;
-import com.olivia.peanut.util.SetNamePojoUtils;
 import com.olivia.sdk.service.SetNameService;
+import com.olivia.sdk.utils.$;
+import com.olivia.sdk.utils.DynamicsPage;
+import com.olivia.sdk.utils.LambdaQueryUtil;
+import jakarta.annotation.Resource;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
+import org.springframework.aop.framework.AopContext;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * 报表配置(BaseReportConfig)表服务实现类
@@ -94,13 +86,11 @@ public class BaseReportConfigServiceImpl extends MPJBaseServiceImpl<BaseReportCo
   private MPJLambdaWrapper<BaseReportConfig> getWrapper(BaseReportConfigDto obj) {
     MPJLambdaWrapper<BaseReportConfig> q = new MPJLambdaWrapper<>();
 
-
     LambdaQueryUtil.lambdaQueryWrapper(q, obj, BaseReportConfig.class
         // 查询条件
         , BaseReportConfig::getReportName //
         , BaseReportConfig::getReportUrl //
     );
-
 
     q.orderByDesc(BaseReportConfig::getId);
     return q;

@@ -14,14 +14,13 @@ import com.olivia.peanut.base.service.MsgMessageReadService;
 import com.olivia.sdk.filter.LoginUser;
 import com.olivia.sdk.filter.LoginUserContext;
 import com.olivia.sdk.utils.*;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Objects;
 
 /**
  * (MsgMessageRead)表服务实现类
@@ -92,7 +91,8 @@ public class MsgMessageReadApiImpl implements MsgMessageReadApi {
   }
 
   public @Override MsgMessageReadQueryByIdListRes queryByIdListRes(MsgMessageReadQueryByIdListReq req) {
-    MPJLambdaWrapper<MsgMessageRead> q = new MPJLambdaWrapper<MsgMessageRead>(MsgMessageRead.class).selectAll(MsgMessageRead.class).in(MsgMessageRead::getId, req.getIdList());
+    MPJLambdaWrapper<MsgMessageRead> q = new MPJLambdaWrapper<MsgMessageRead>(MsgMessageRead.class).selectAll(MsgMessageRead.class)
+        .in(MsgMessageRead::getId, req.getIdList());
     List<MsgMessageRead> list = this.msgMessageReadService.list(q);
     List<MsgMessageReadDto> dataList = $.copyList(list, MsgMessageReadDto.class);
     return new MsgMessageReadQueryByIdListRes().setDataList(dataList);
@@ -101,7 +101,8 @@ public class MsgMessageReadApiImpl implements MsgMessageReadApi {
   @Override
   public MsgMessageMaskReadRes maskRead(MsgMessageMaskReadReq req) {
     LoginUser loginUser = LoginUserContext.getLoginUser();
-    MsgMessageRead msgMessageRead = this.msgMessageReadService.getOne(Wrappers.<MsgMessageRead>lambdaQuery().eq(MsgMessageRead::getUserId, loginUser.getId()).last(Str.LIMIT_1));
+    MsgMessageRead msgMessageRead = this.msgMessageReadService.getOne(
+        Wrappers.<MsgMessageRead>lambdaQuery().eq(MsgMessageRead::getUserId, loginUser.getId()).last(Str.LIMIT_1));
     if (Objects.isNull(msgMessageRead)) {
       msgMessageRead = new MsgMessageRead();
       msgMessageRead.setId(IdWorker.getId());

@@ -2,14 +2,14 @@ package com.olivia.peanut.base.converter;
 
 import com.olivia.peanut.base.api.entity.baseReportConfigUser.*;
 import com.olivia.peanut.base.model.BaseReportConfigUser;
+import java.util.List;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 import org.mapstruct.factory.Mappers;
 
-import java.util.List;
-
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface BaseReportConfigUserConverter {
+
   BaseReportConfigUserConverter INSTANCE = Mappers.getMapper(BaseReportConfigUserConverter.class);
 
   BaseReportConfigUser insertReq(BaseReportConfigUserInsertReq req);

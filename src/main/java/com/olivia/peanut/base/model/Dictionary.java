@@ -18,7 +18,7 @@ import lombok.experimental.Accessors;
 @Setter
 //
 @TableName("t_dictionary")
-public class Dictionary extends BaseEntity {
+public class Dictionary extends BaseEntity<Dictionary> {
 
   /***
    *  id

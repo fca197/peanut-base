@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public interface WebSocketApi {
 
   @RequestMapping("/webSocket/sendMessageTopic")
-  void sendMessageTopic(@RequestBody SendMessageReq message) ;
+  void sendMessageTopic(@RequestBody SendMessageReq message);
 
   @RequestMapping("/webSocket/sendMessageUserToken")
-  void sendMessageUserToken(@RequestBody SendMessageReq message) ;
+  void sendMessageUserToken(@RequestBody SendMessageReq message);
 }

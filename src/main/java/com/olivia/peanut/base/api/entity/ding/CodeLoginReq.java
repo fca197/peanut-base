@@ -8,6 +8,7 @@ import lombok.experimental.Accessors;
 @Getter
 @Accessors(chain = true)
 public class CodeLoginReq {
+
   private String code;
   private String corpId;
 }

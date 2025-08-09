@@ -11,15 +11,13 @@ import com.olivia.peanut.base.model.TenantInfo;
 import com.olivia.peanut.base.service.TenantInfoService;
 import com.olivia.sdk.utils.$;
 import com.olivia.sdk.utils.DynamicsPage;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
+import com.olivia.sdk.utils.LambdaQueryUtil;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * 租户信息(TenantInfo)表服务实现类
@@ -71,30 +69,28 @@ public class TenantInfoServiceImpl extends MPJBaseServiceImpl<TenantInfoMapper, 
   private MPJLambdaWrapper<TenantInfo> getWrapper(TenantInfoDto obj) {
     MPJLambdaWrapper<TenantInfo> q = new MPJLambdaWrapper<>();
 
-    if (Objects.nonNull(obj)) {
-      q
-          .eq(Objects.nonNull(obj.getId()), TenantInfo::getId, obj.getId())
-          .likeRight(StringUtils.isNoneBlank(obj.getTenantName()), TenantInfo::getTenantName, obj.getTenantName())
-          .orderByDesc(TenantInfo::getId)
-      ;
-    }
-
+    LambdaQueryUtil.lambdaQueryWrapper(q, obj, TenantInfo.class, TenantInfo::getTenantName);
+//    if (Objects.nonNull(obj)) {
+//      q.eq(Objects.nonNull(obj.getId()), TenantInfo::getId, obj.getId())
+//          .likeRight(StringUtils.isNoneBlank(obj.getTenantName()), TenantInfo::getTenantName, obj.getTenantName())//
+//
+//    }
+    q.orderByDesc(TenantInfo::getId);
     return q;
 
   }
 
   private void setQueryListHeader(DynamicsPage<TenantInfo> page) {
-    page
-        .addHeader("id", "id")
-        .addHeader("tenantName", "租户名称")
-        .addHeader("tenantCode", "租户编码")
-        .addHeader("isDelete", "是否删除(0:否 1:是)")
-        .addHeader("createTime", "创建时间")
-        .addHeader("createBy", "创建人id")
-        .addHeader("updateTime", "更新时间")
-        .addHeader("updateBy", "更新人id")
-        .addHeader("traceId", "链路追踪ID")
-        .addHeader("tenantId", "$column.comment")
+    page.addHeader("id", "id") //
+        .addHeader("tenantName", "租户名称") //
+        .addHeader("tenantCode", "租户编码") //
+        .addHeader("isDelete", "是否删除(0:否 1:是) //") //
+        .addHeader("createTime", "创建时间") //
+        .addHeader("createBy", "创建人id") //
+        .addHeader("updateTime", "更新时间") //
+        .addHeader("updateBy", "更新人id") //
+        .addHeader("traceId", "链路追踪ID") //
+        .addHeader("tenantId", "$column.comment") //
     ;
   }
 

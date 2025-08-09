@@ -1,10 +1,9 @@
 package com.olivia.peanut.base.api.entity.baseOplog;
 
+import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
-
-import java.util.List;
 
 /**
  * 操作日志(BaseOplog)保存返回
@@ -17,6 +16,7 @@ import java.util.List;
 @Setter
 @SuppressWarnings("serial")
 public class BaseOplogImportRes {
+
   /****
    * 写入行数
    */

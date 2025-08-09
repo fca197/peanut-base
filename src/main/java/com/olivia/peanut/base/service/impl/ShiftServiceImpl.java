@@ -23,16 +23,12 @@ import com.olivia.sdk.comment.ServiceComment;
 import com.olivia.sdk.utils.$;
 import com.olivia.sdk.utils.DynamicsPage;
 import jakarta.annotation.Resource;
+import java.util.*;
+import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
-import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
 
 /**
  * (Shift)表服务实现类
@@ -115,8 +111,8 @@ public class ShiftServiceImpl extends MPJBaseServiceImpl<ShiftMapper, Shift> imp
       return;
     }
     Set<Long> sIdSet = shiftDtoList.stream().map(BaseEntityDto::getId).collect(Collectors.toSet());
-    Map<Long, List<ShiftItem>> itemList = this.shiftItemService.list(new MPJLambdaWrapper<ShiftItem>().in(ShiftItem::getShiftId, sIdSet))
-        .stream().collect(Collectors.groupingBy(ShiftItem::getShiftId));
+    Map<Long, List<ShiftItem>> itemList = this.shiftItemService.list(new MPJLambdaWrapper<ShiftItem>().in(ShiftItem::getShiftId, sIdSet)).stream()
+        .collect(Collectors.groupingBy(ShiftItem::getShiftId));
     Set<Long> fidSet = shiftDtoList.stream().map(ShiftDto::getFactoryId).collect(Collectors.toSet());
     Map<Long, String> fnMap = this.factoryService.listByIds(fidSet).stream().collect(Collectors.toMap(Factory::getId, Factory::getFactoryName));
     shiftDtoList.forEach(t -> t.setFactoryName(fnMap.get(t.getFactoryId())).setShiftItemDtoList($.copyList(itemList.get(t.getId()), ShiftItemDto.class)));
@@ -129,8 +125,7 @@ public class ShiftServiceImpl extends MPJBaseServiceImpl<ShiftMapper, Shift> imp
     MPJLambdaWrapper<Shift> q = new MPJLambdaWrapper<>();
 
     if (Objects.nonNull(obj)) {
-      q
-          .eq(StringUtils.isNoneBlank(obj.getShiftCode()), Shift::getShiftCode, obj.getShiftCode())
+      q.eq(StringUtils.isNoneBlank(obj.getShiftCode()), Shift::getShiftCode, obj.getShiftCode())
           .eq(StringUtils.isNoneBlank(obj.getShiftName()), Shift::getShiftName, obj.getShiftName())
           .eq(Objects.nonNull(obj.getFactoryId()), Shift::getFactoryId, obj.getFactoryId())
 

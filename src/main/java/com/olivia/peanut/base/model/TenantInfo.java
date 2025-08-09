@@ -18,7 +18,7 @@ import lombok.experimental.Accessors;
 @Setter
 //
 @TableName("t_tenant_info")
-public class TenantInfo extends BaseEntity {
+public class TenantInfo extends BaseEntity<TenantInfo> {
 
 
   /***

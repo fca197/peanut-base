@@ -3,11 +3,9 @@ package com.olivia.peanut.base.service.impl;
 import com.olivia.peanut.base.service.MailService;
 import com.olivia.peanut.base.service.entity.SendMailReq;
 import com.olivia.sdk.utils.RunUtils;
-import jakarta.annotation.Resource;
 import java.util.List;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.autoconfigure.mail.MailProperties;
 import org.springframework.stereotype.Service;
 
 @Slf4j

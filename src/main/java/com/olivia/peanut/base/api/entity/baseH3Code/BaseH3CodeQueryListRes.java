@@ -1,10 +1,9 @@
 package com.olivia.peanut.base.api.entity.baseH3Code;
 
+import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
-
-import java.util.List;
 
 /**
  * H3对应的值(BaseH3Code)查询对象返回
@@ -17,6 +16,7 @@ import java.util.List;
 @Setter
 @SuppressWarnings("serial")
 public class BaseH3CodeQueryListRes {
+
   /***
    * 返回对象列表
    */

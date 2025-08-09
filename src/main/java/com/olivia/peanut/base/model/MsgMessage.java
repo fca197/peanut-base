@@ -18,7 +18,7 @@ import lombok.experimental.Accessors;
 @Setter
 //@SuppressWarnings("serial")
 @TableName("msg_message")
-public class MsgMessage extends BaseEntity {
+public class MsgMessage extends BaseEntity<MsgMessage> {
 
   private Boolean isAll;
   private String messageTitle;

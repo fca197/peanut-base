@@ -18,7 +18,8 @@ import lombok.experimental.Accessors;
 @Setter
 //@SuppressWarnings("serial")
 @TableName("base_oplog")
-public class BaseOplog extends BaseEntity {
+public class BaseOplog extends BaseEntity<BaseOplog> {
+
   /***
    *  操作内容
    */

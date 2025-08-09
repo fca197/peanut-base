@@ -14,16 +14,15 @@ import com.olivia.sdk.service.SetNameService;
 import com.olivia.sdk.utils.$;
 import com.olivia.sdk.utils.DynamicsPage;
 import jakarta.annotation.Resource;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.aop.framework.AopContext;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.aop.framework.AopContext;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * 操作日志(BaseOplog)表服务实现类
@@ -89,10 +88,8 @@ public class BaseOplogServiceImpl extends MPJBaseServiceImpl<BaseOplogMapper, Ba
   private MPJLambdaWrapper<BaseOplog> getWrapper(BaseOplogDto obj) {
     MPJLambdaWrapper<BaseOplog> q = new MPJLambdaWrapper<>();
 
-
     if (Objects.nonNull(obj)) {
-      q
-          .eq(StringUtils.isNoneBlank(obj.getContent()), BaseOplog::getContent, obj.getContent())
+      q.eq(StringUtils.isNoneBlank(obj.getContent()), BaseOplog::getContent, obj.getContent())
           .eq(StringUtils.isNoneBlank(obj.getBusinessType()), BaseOplog::getBusinessType, obj.getBusinessType())
           .eq(StringUtils.isNoneBlank(obj.getBusinessKey()), BaseOplog::getBusinessKey, obj.getBusinessKey())
           .eq(StringUtils.isNoneBlank(obj.getUrl()), BaseOplog::getUrl, obj.getUrl())

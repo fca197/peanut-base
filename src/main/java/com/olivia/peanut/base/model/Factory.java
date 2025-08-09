@@ -18,7 +18,7 @@ import lombok.experimental.Accessors;
 @Setter
 //
 @TableName("t_factory")
-public class Factory extends BaseEntity {
+public class Factory extends BaseEntity<Factory> {
 
   /***
    *  id

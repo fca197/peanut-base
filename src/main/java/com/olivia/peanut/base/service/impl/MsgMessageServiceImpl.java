@@ -1,5 +1,8 @@
 package com.olivia.peanut.base.service.impl;
 
+import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
+
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.github.yulichang.base.MPJBaseServiceImpl;
@@ -18,18 +21,14 @@ import com.olivia.sdk.utils.$;
 import com.olivia.sdk.utils.DynamicsPage;
 import com.olivia.sdk.utils.Str;
 import jakarta.annotation.Resource;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
-
-import static java.lang.Boolean.FALSE;
-import static java.lang.Boolean.TRUE;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * (MsgMessage)表服务实现类
@@ -68,7 +67,8 @@ public class MsgMessageServiceImpl extends MPJBaseServiceImpl<MsgMessageMapper, 
       records = $.copyList(this.list(q), MsgMessageExportQueryPageListInfoRes.class);
     }
     LoginUser loginUser = LoginUserContext.getLoginUser();
-    MsgMessageRead messageRead = msgMessageReadService.getOne(new LambdaQueryWrapper<MsgMessageRead>().eq(MsgMessageRead::getUserId, loginUser.getId()).last(Str.LIMIT_1));
+    MsgMessageRead messageRead = msgMessageReadService.getOne(
+        new LambdaQueryWrapper<MsgMessageRead>().eq(MsgMessageRead::getUserId, loginUser.getId()).last(Str.LIMIT_1));
 
     // 类型转换，  更换枚举 等操作
     List<MsgMessageExportQueryPageListInfoRes> listInfoRes = $.copyList(records, MsgMessageExportQueryPageListInfoRes.class);
@@ -94,9 +94,7 @@ public class MsgMessageServiceImpl extends MPJBaseServiceImpl<MsgMessageMapper, 
     MPJLambdaWrapper<MsgMessage> q = new MPJLambdaWrapper<>();
 
     if (Objects.nonNull(obj)) {
-      q
-          .eq(Objects.nonNull(obj.getId()), MsgMessage::getId, obj.getId())
-          .eq(Objects.nonNull(obj.getTenantId()), MsgMessage::getTenantId, obj.getTenantId())
+      q.eq(Objects.nonNull(obj.getId()), MsgMessage::getId, obj.getId()).eq(Objects.nonNull(obj.getTenantId()), MsgMessage::getTenantId, obj.getTenantId())
           .eq(Objects.nonNull(obj.getIsAll()), MsgMessage::getIsAll, obj.getIsAll())
           .eq(StringUtils.isNoneBlank(obj.getMessageTitle()), MsgMessage::getMessageTitle, obj.getMessageTitle())
           .eq(StringUtils.isNoneBlank(obj.getMessageContext()), MsgMessage::getMessageContext, obj.getMessageContext())
@@ -111,22 +109,11 @@ public class MsgMessageServiceImpl extends MPJBaseServiceImpl<MsgMessageMapper, 
   }
 
   private void setQueryListHeader(DynamicsPage<MsgMessage> page) {
-    page
-        .addHeader("id", "$column.comment")
-        .addHeader("tenantId", "$column.comment")
-        .addHeader("isAll", "$column.comment")
-        .addHeader("messageTitle", "$column.comment")
-        .addHeader("messageContext", "$column.comment")
-        .addHeader("isDelete", "$column.comment")
-        .addHeader("createTime", "$column.comment")
-        .addHeader("createBy", "$column.comment")
-        .addHeader("updateTime", "$column.comment")
-        .addHeader("updateBy", "$column.comment")
-        .addHeader("traceId", "$column.comment")
-        .addHeader("version", "$column.comment")
-        .addHeader("isUsed", "$column.comment")
-        .addHeader("versionNum", "$column.comment")
-    ;
+    page.addHeader("id", "$column.comment").addHeader("tenantId", "$column.comment").addHeader("isAll", "$column.comment").addHeader("messageTitle", "$column.comment")
+        .addHeader("messageContext", "$column.comment").addHeader("isDelete", "$column.comment").addHeader("createTime", "$column.comment")
+        .addHeader("createBy", "$column.comment").addHeader("updateTime", "$column.comment").addHeader("updateBy", "$column.comment")
+        .addHeader("traceId", "$column.comment").addHeader("version", "$column.comment").addHeader("isUsed", "$column.comment")
+        .addHeader("versionNum", "$column.comment");
   }
 }
 

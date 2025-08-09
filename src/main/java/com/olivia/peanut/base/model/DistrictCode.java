@@ -4,11 +4,10 @@ package com.olivia.peanut.base.model;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.olivia.sdk.utils.BaseEntity;
+import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
-
-import java.util.List;
 
 /**
  * (DistrictCode)表实体类
@@ -21,7 +20,7 @@ import java.util.List;
 @Setter
 //@SuppressWarnings("serial")
 @TableName("t_district_code")
-public class DistrictCode extends BaseEntity {
+public class DistrictCode extends BaseEntity<DistrictCode> {
 
   private String code;
   private String name;

@@ -1,10 +1,7 @@
 package com.olivia.peanut.base.service;
 
 import com.github.yulichang.base.MPJBaseService;
-import com.olivia.peanut.base.api.entity.dictionary.DictionaryExportQueryPageListInfoRes;
-import com.olivia.peanut.base.api.entity.dictionary.DictionaryExportQueryPageListReq;
-import com.olivia.peanut.base.api.entity.dictionary.DictionaryQueryListReq;
-import com.olivia.peanut.base.api.entity.dictionary.DictionaryQueryListRes;
+import com.olivia.peanut.base.api.entity.dictionary.*;
 import com.olivia.peanut.base.model.Dictionary;
 import com.olivia.sdk.utils.DynamicsPage;
 

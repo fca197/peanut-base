@@ -8,6 +8,7 @@ import lombok.experimental.Accessors;
 @Getter
 @Accessors(chain = true)
 public class SendMailAttFileReq {
+
   private String fileName;
   private String filePath;
 }

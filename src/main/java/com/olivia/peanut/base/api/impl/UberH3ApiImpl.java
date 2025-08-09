@@ -1,19 +1,18 @@
 package com.olivia.peanut.base.api.impl;
 
+import static com.olivia.peanut.util.H3Utils.UBER_H3_CORE;
+
 import cn.hutool.core.bean.BeanUtil;
 import com.olivia.peanut.base.api.UberH3Api;
 import com.olivia.peanut.base.api.entity.h3.*;
 import com.uber.h3core.LengthUnit;
 import com.uber.h3core.util.LatLng;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-
-import static com.olivia.peanut.util.H3Utils.UBER_H3_CORE;
 
 /***
  *
@@ -123,7 +122,8 @@ public class UberH3ApiImpl implements UberH3Api {
   @Override
   public GreatCircleDistanceRes greatCircleDistance(GreatCircleDistanceReq req) {
 
-    double distance = UBER_H3_CORE.greatCircleDistance(BeanUtil.copyProperties(req.getSourceLatLng(), LatLng.class), BeanUtil.copyProperties(req.getEndLatLng(), LatLng.class),
+    double distance = UBER_H3_CORE.greatCircleDistance(BeanUtil.copyProperties(req.getSourceLatLng(), LatLng.class),
+        BeanUtil.copyProperties(req.getEndLatLng(), LatLng.class),
         LengthUnit.valueOf(req.getLengthUnit()));
     return new GreatCircleDistanceRes().setDistance(distance);
 

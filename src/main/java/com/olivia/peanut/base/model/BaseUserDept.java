@@ -18,7 +18,7 @@ import lombok.experimental.Accessors;
 @Setter
 //@SuppressWarnings("serial")
 @TableName("base_user_dept")
-public class BaseUserDept extends BaseEntity {
+public class BaseUserDept extends BaseEntity<BaseUserDept> {
 
   /***
    *  用户ID

@@ -5,7 +5,6 @@ import com.olivia.peanut.base.api.entity.districtCode.*;
 import com.olivia.peanut.base.api.enums.DistrictCodeSelectType;
 import com.olivia.peanut.base.model.DistrictCode;
 import com.olivia.sdk.utils.DynamicsPage;
-
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -25,7 +24,7 @@ public interface DistrictCodeService extends MPJBaseService<DistrictCode> {
 
   void setName(List<? extends DistrictCodeDto> districtCodeDtoList);
 
-  void setDistrictName(List<? extends  Object> list, DistrictCodeSelectType... selectTypes);
+  void setDistrictName(List<? extends Object> list, DistrictCodeSelectType... selectTypes);
 
   Map<String, DistrictCode> getDistrictCodeMap(Collection<String> codeList);
 }

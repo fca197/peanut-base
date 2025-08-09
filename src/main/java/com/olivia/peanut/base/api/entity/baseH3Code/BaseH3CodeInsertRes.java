@@ -15,6 +15,7 @@ import lombok.experimental.Accessors;
 @Setter
 @SuppressWarnings("serial")
 public class BaseH3CodeInsertRes {
+
   /****
    * 写入行数
    */

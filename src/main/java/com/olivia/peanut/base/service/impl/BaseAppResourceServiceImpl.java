@@ -13,20 +13,16 @@ import com.olivia.peanut.base.model.*;
 import com.olivia.peanut.base.service.*;
 import com.olivia.sdk.filter.LoginUserContext;
 import com.olivia.sdk.service.SetNameService;
-import com.olivia.sdk.utils.$;
-import com.olivia.sdk.utils.BaseEntity;
-import com.olivia.sdk.utils.DynamicsPage;
-import com.olivia.sdk.utils.RunUtils;
+import com.olivia.sdk.utils.*;
 import jakarta.annotation.Resource;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.aop.framework.AopContext;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.aop.framework.AopContext;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * 资源(BaseAppResource)表服务实现类
@@ -96,7 +92,7 @@ public class BaseAppResourceServiceImpl extends MPJBaseServiceImpl<BaseAppResour
     if (CollUtil.isEmpty(list)) {
       return;
     }
-    if (!Boolean.TRUE.equals(LoginUserContext.getLoginUser().isAdmin())) {
+    if (!LoginUserContext.getLoginUser().isAdmin()) {
 
       Long id = LoginUserContext.getLoginUser().getId();
       Set<Long> resourceIdSet = Collections.synchronizedSet(new HashSet<>());

@@ -5,24 +5,7 @@ import cn.hutool.core.io.FileUtil;
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import com.github.yulichang.wrapper.MPJLambdaWrapper;
 import com.olivia.peanut.base.api.FileUploadApi;
-import com.olivia.peanut.base.api.entity.fileUpload.FileUploadDeleteByIdListReq;
-import com.olivia.peanut.base.api.entity.fileUpload.FileUploadDeleteByIdListRes;
-import com.olivia.peanut.base.api.entity.fileUpload.FileUploadDownLoadReq;
-import com.olivia.peanut.base.api.entity.fileUpload.FileUploadDto;
-import com.olivia.peanut.base.api.entity.fileUpload.FileUploadExportQueryPageListInfoRes;
-import com.olivia.peanut.base.api.entity.fileUpload.FileUploadExportQueryPageListReq;
-import com.olivia.peanut.base.api.entity.fileUpload.FileUploadImportReq;
-import com.olivia.peanut.base.api.entity.fileUpload.FileUploadImportRes;
-import com.olivia.peanut.base.api.entity.fileUpload.FileUploadInsertReq;
-import com.olivia.peanut.base.api.entity.fileUpload.FileUploadInsertRes;
-import com.olivia.peanut.base.api.entity.fileUpload.FileUploadQueryByIdListReq;
-import com.olivia.peanut.base.api.entity.fileUpload.FileUploadQueryByIdListRes;
-import com.olivia.peanut.base.api.entity.fileUpload.FileUploadQueryListReq;
-import com.olivia.peanut.base.api.entity.fileUpload.FileUploadQueryListRes;
-import com.olivia.peanut.base.api.entity.fileUpload.FileUploadUpdateByIdReq;
-import com.olivia.peanut.base.api.entity.fileUpload.FileUploadUpdateByIdRes;
-import com.olivia.peanut.base.api.entity.fileUpload.GetFileBase64Req;
-import com.olivia.peanut.base.api.entity.fileUpload.GetFileBase64Res;
+import com.olivia.peanut.base.api.entity.fileUpload.*;
 import com.olivia.peanut.base.api.impl.listener.FileUploadImportListener;
 import com.olivia.peanut.base.model.FileUpload;
 import com.olivia.peanut.base.service.FileUploadService;
@@ -30,18 +13,11 @@ import com.olivia.sdk.ann.MethodExt;
 import com.olivia.sdk.config.PeanutProperties;
 import com.olivia.sdk.exception.CanIgnoreException;
 import com.olivia.sdk.filter.LoginUserContext;
-import com.olivia.sdk.utils.$;
-import com.olivia.sdk.utils.DynamicsPage;
-import com.olivia.sdk.utils.PoiExcelUtil;
-import com.olivia.sdk.utils.ReqResUtils;
-import com.olivia.sdk.utils.Str;
+import com.olivia.sdk.utils.*;
 import jakarta.annotation.Resource;
 import jakarta.servlet.ServletOutputStream;
 import jakarta.servlet.http.HttpServletResponse;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.URLEncoder;
 import java.nio.channels.Channels;
 import java.nio.charset.StandardCharsets;
@@ -73,13 +49,10 @@ import org.springframework.web.multipart.MultipartFile;
 @RestController
 public class FileUploadApiImpl implements FileUploadApi {
 
-  @Resource
-  PeanutProperties peanutProperties;
-
-
   private static final Predicate<String> SAFE_PATH = path -> !path.contains("..") && !Paths.get(
       path).isAbsolute();
-
+  @Resource
+  PeanutProperties peanutProperties;
   private @Autowired FileUploadService fileUploadService;
 
   /****

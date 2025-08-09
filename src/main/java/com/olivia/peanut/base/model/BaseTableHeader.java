@@ -18,7 +18,7 @@ import lombok.experimental.Accessors;
 @Setter
 //@SuppressWarnings("serial")
 @TableName("base_table_header")
-public class BaseTableHeader extends BaseEntity {
+public class BaseTableHeader extends BaseEntity<BaseTableHeader> {
 
   private String bizKey;
   private String fieldName;

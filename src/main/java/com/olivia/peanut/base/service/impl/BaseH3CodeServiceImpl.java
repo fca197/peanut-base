@@ -1,5 +1,7 @@
 package com.olivia.peanut.base.service.impl;
 
+import static com.olivia.peanut.util.H3Utils.UBER_H3_CORE;
+
 import cn.hutool.core.util.ReflectUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -17,10 +19,6 @@ import com.olivia.sdk.utils.$;
 import com.olivia.sdk.utils.DynamicsPage;
 import com.olivia.sdk.utils.RunUtils;
 import jakarta.annotation.Resource;
-import org.springframework.aop.framework.AopContext;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
@@ -28,8 +26,9 @@ import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-
-import static com.olivia.peanut.util.H3Utils.UBER_H3_CORE;
+import org.springframework.aop.framework.AopContext;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 
 /**
@@ -111,7 +110,6 @@ public class BaseH3CodeServiceImpl extends MPJBaseServiceImpl<BaseH3CodeMapper, 
 
   private MPJLambdaWrapper<BaseH3Code> getWrapper(BaseH3CodeDto obj) {
     MPJLambdaWrapper<BaseH3Code> q = new MPJLambdaWrapper<>();
-
 
     if (Objects.nonNull(obj)) {
       q

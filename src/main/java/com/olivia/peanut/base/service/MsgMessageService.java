@@ -1,10 +1,7 @@
 package com.olivia.peanut.base.service;
 
 import com.github.yulichang.base.MPJBaseService;
-import com.olivia.peanut.base.api.entity.msgMessage.MsgMessageExportQueryPageListInfoRes;
-import com.olivia.peanut.base.api.entity.msgMessage.MsgMessageExportQueryPageListReq;
-import com.olivia.peanut.base.api.entity.msgMessage.MsgMessageQueryListReq;
-import com.olivia.peanut.base.api.entity.msgMessage.MsgMessageQueryListRes;
+import com.olivia.peanut.base.api.entity.msgMessage.*;
 import com.olivia.peanut.base.model.MsgMessage;
 import com.olivia.sdk.utils.DynamicsPage;
 

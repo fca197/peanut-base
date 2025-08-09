@@ -1,5 +1,7 @@
 package com.olivia.peanut.base.api.impl;
 
+import static java.lang.Boolean.TRUE;
+
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.date.LocalDateTimeUtil;
 import cn.hutool.core.util.RandomUtil;
@@ -23,19 +25,15 @@ import jakarta.annotation.Resource;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.temporal.TemporalUnit;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RestController;
-
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
-
-import static java.lang.Boolean.TRUE;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RestController;
 
 /***
  *
@@ -72,8 +70,7 @@ public class LoginAccountApiImpl implements LoginAccountApi {
 //  @RedissonLockAnn(lockPrefix = "login", lockBizKeyFlag = "#req.loginPhone",afterDeleteKey = false,isWait = false)
   public LoginPhonePwdRes loginPhonePwd(LoginPhonePwdReq req) {
 
-    LoginUserContext.ignoreTenantId(TRUE);
-
+    LoginUserContext.setIgnoreTenantId(TRUE);
 
     LoginAccount loginAccount = loginAccountService.getOne(new LambdaQueryWrapper<LoginAccount>() //
         .eq(LoginAccount::getLoginPhone, req.getLoginPhone()).eq(LoginAccount::getUserPwd, req.getPwd()), false);
@@ -84,7 +81,7 @@ public class LoginAccountApiImpl implements LoginAccountApi {
     String key = peanutProperties.getRedisKey().getUserToken() + token;
     log.info("loginPhonePwd ,loginPhone: {} token: {} loginAccount: {}", req.getLoginPhone(), key, str);
     long seconds = LocalDateTimeUtil.between(
-        LocalDate.now().minusDays(2).atTime(LocalTime.MIN),LocalDateTime.now())
+            LocalDate.now().minusDays(2).atTime(LocalTime.MIN), LocalDateTime.now())
         .getSeconds();
     stringRedisTemplate.opsForValue().set(key, str, seconds, TimeUnit.SECONDS);
     return new LoginPhonePwdRes().setToken(token);
@@ -120,12 +117,18 @@ public class LoginAccountApiImpl implements LoginAccountApi {
       Map<Long, String> rnMap = this.baseRoleService.list().stream().collect(Collectors.toMap(BaseEntity::getId, BaseRole::getRoleName));
       Map<Long, String> dnMap = deptService.list().stream().collect(Collectors.toMap(BaseEntity::getId, BaseDept::getDeptName));
       List<Long> userIdList = result.stream().map(BaseEntityDto::getId).toList();
-      Map<Long, List<Long>> userDeptMap = this.baseUserDeptService.list(new LambdaQueryWrapper<BaseUserDept>().in(BaseUserDept::getUserId, userIdList)).stream().collect(Collectors.groupingBy(BaseUserDept::getUserId, Collectors.collectingAndThen(Collectors.<BaseUserDept>toList(), list -> list.stream().map(BaseUserDept::getDeptId).toList())));
+      Map<Long, List<Long>> userDeptMap = this.baseUserDeptService.list(new LambdaQueryWrapper<BaseUserDept>().in(BaseUserDept::getUserId, userIdList)).stream().collect(
+          Collectors.groupingBy(BaseUserDept::getUserId,
+              Collectors.collectingAndThen(Collectors.<BaseUserDept>toList(), list -> list.stream().map(BaseUserDept::getDeptId).toList())));
 
       List<BaseUserRoleGroup> userRoleGroupList = baseUserRoleGroupService.list(new LambdaQueryWrapper<BaseUserRoleGroup>().in(BaseUserRoleGroup::getUserId, userIdList));
-      Map<Long, List<Long>> userRoleGroupIdMap = userRoleGroupList.stream().collect(Collectors.groupingBy(BaseUserRoleGroup::getUserId, Collectors.collectingAndThen(Collectors.<BaseUserRoleGroup>toList(), list -> list.stream().map(BaseUserRoleGroup::getRoleGroupId).collect(Collectors.toList()))));
+      Map<Long, List<Long>> userRoleGroupIdMap = userRoleGroupList.stream().collect(Collectors.groupingBy(BaseUserRoleGroup::getUserId,
+          Collectors.collectingAndThen(Collectors.<BaseUserRoleGroup>toList(),
+              list -> list.stream().map(BaseUserRoleGroup::getRoleGroupId).collect(Collectors.toList()))));
 
-      Map<Long, List<Long>> userRoleMap = this.baseUserRoleService.list(new LambdaQueryWrapper<BaseUserRole>().in(BaseUserRole::getUserId, userIdList)).stream().collect(Collectors.groupingBy(BaseUserRole::getUserId, Collectors.collectingAndThen(Collectors.<BaseUserRole>toList(), list -> list.stream().map(BaseUserRole::getRoleId).toList())));
+      Map<Long, List<Long>> userRoleMap = this.baseUserRoleService.list(new LambdaQueryWrapper<BaseUserRole>().in(BaseUserRole::getUserId, userIdList)).stream().collect(
+          Collectors.groupingBy(BaseUserRole::getUserId,
+              Collectors.collectingAndThen(Collectors.<BaseUserRole>toList(), list -> list.stream().map(BaseUserRole::getRoleId).toList())));
 
       result.forEach(t -> {
         List<Long> userGroupIdList = userRoleGroupIdMap.getOrDefault(t.getId(), List.of());

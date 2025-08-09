@@ -1,5 +1,8 @@
 package com.olivia.peanut.base.service.impl;
 
+import static com.olivia.sdk.utils.FieldUtils.getField;
+import static java.lang.Boolean.TRUE;
+
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.ReflectUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
@@ -17,20 +20,16 @@ import com.olivia.peanut.base.service.CalendarService;
 import com.olivia.sdk.utils.*;
 import com.olivia.sdk.utils.model.WeekInfo;
 import jakarta.annotation.Resource;
-import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-
-import static com.olivia.sdk.utils.FieldUtils.getField;
-import static java.lang.Boolean.TRUE;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * 工作日历(Calendar)表服务实现类
@@ -96,7 +95,8 @@ public class CalendarServiceImpl extends MPJBaseServiceImpl<CalendarMapper, Cale
   }
 
   private void setQueryListHeader(DynamicsPage<Calendar> page) {
-    page.addHeader("id", "id").addHeader("tenantId", "所属租户id").addHeader("factoryId", "所属工厂id").addHeader("calendarName", "日历名称").addHeader("calendarCode", "日历编码")
+    page.addHeader("id", "id").addHeader("tenantId", "所属租户id").addHeader("factoryId", "所属工厂id").addHeader("calendarName", "日历名称")
+        .addHeader("calendarCode", "日历编码")
         .addHeader("calendarType", "日历类型 ").addHeader("calendarDesc", "日历描述").addHeader("calendarDisabled", "日历状态 0 启用 ,1 禁用  ")
         .addHeader("isDelete", "是否删除(0:否 1:是)").addHeader("createTime", "创建时间").addHeader("createBy", "创建人id").addHeader("updateTime", "更新时间")
         .addHeader("updateBy", "更新人id").addHeader("traceId", "调用链");

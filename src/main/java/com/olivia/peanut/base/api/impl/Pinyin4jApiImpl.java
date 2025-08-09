@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class Pinyin4jApiImpl implements Pinyin4jApi {
+
   @Override
   public GetSZMRes getSZM(GetSZMReq req) {
     String str = req.getStr();
