@@ -57,6 +57,16 @@ public class ShiftServiceImpl extends MPJBaseServiceImpl<ShiftMapper, Shift> imp
     return new ShiftQueryListRes().setDataList(dataList);
   }
 
+  @Override
+  public Shift queryByFactoryId(Long factoryId) {
+    Shift shift = this.getOne(new LambdaQueryWrapper<Shift>().eq(Shift::getFactoryId, factoryId));
+    $.requireNonNullCanIgnoreException(shift, "工厂对应班次不存在");
+    List<ShiftItem> shiftItemList = this.shiftItemService.list(
+        new LambdaQueryWrapper<ShiftItem>().eq(ShiftItem::getFactoryId, factoryId).eq(ShiftItem::getFactoryId, factoryId));
+    shift.setShiftItemList(shiftItemList);
+    return shift;
+  }
+
   public @Override DynamicsPage<ShiftExportQueryPageListInfoRes> queryPageList(ShiftExportQueryPageListReq req) {
 
     DynamicsPage<Shift> page = new DynamicsPage<>();

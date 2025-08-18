@@ -14,10 +14,10 @@ import com.olivia.peanut.base.service.BaseTableHeaderService;
 import com.olivia.sdk.utils.$;
 import com.olivia.sdk.utils.DynamicsPage;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
+import lombok.SneakyThrows;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,7 +32,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class BaseTableHeaderServiceImpl extends MPJBaseServiceImpl<BaseTableHeaderMapper, BaseTableHeader> implements BaseTableHeaderService {
 
-  final static Cache<String, Map<String, String>> cache = CacheBuilder.newBuilder().maximumSize(100).expireAfterWrite(30, TimeUnit.MINUTES).build();
+  final static Cache<String, List<BaseTableHeader>> cacheBaseTableHeader = CacheBuilder.newBuilder().maximumSize(100).expireAfterWrite(30, TimeUnit.MINUTES).build();
 
   public @Override BaseTableHeaderQueryListRes queryList(BaseTableHeaderQueryListReq req) {
 
@@ -96,9 +96,10 @@ public class BaseTableHeaderServiceImpl extends MPJBaseServiceImpl<BaseTableHead
   }
 
   @Override
+  @SneakyThrows
   public void listByBizKey(DynamicsPage<?> page, String bizKey) {
-    List<BaseTableHeader> headerList = this.list(
-        new LambdaUpdateWrapper<BaseTableHeader>().eq(BaseTableHeader::getBizKey, bizKey).orderByAsc(BaseTableHeader::getSortIndex));
+    List<BaseTableHeader> headerList = cacheBaseTableHeader.get(bizKey,
+        () -> this.list(new LambdaUpdateWrapper<BaseTableHeader>().eq(BaseTableHeader::getBizKey, bizKey).orderByAsc(BaseTableHeader::getSortIndex)));
     headerList.forEach(t -> page.addHeader(t.getFieldName(), t.getShowName(), t.getWidthPx()));
   }
 }

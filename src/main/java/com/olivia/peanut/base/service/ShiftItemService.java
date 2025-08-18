@@ -16,6 +16,7 @@ public interface ShiftItemService extends MPJBaseService<ShiftItem> {
 
   ShiftItemQueryListRes queryList(ShiftItemQueryListReq req);
 
+
   DynamicsPage<ShiftItemExportQueryPageListInfoRes> queryPageList(ShiftItemExportQueryPageListReq req);
 
 
