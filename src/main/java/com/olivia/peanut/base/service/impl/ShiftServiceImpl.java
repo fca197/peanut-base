@@ -61,8 +61,7 @@ public class ShiftServiceImpl extends MPJBaseServiceImpl<ShiftMapper, Shift> imp
   public Shift queryByFactoryId(Long factoryId) {
     Shift shift = this.getOne(new LambdaQueryWrapper<Shift>().eq(Shift::getFactoryId, factoryId));
     $.requireNonNullCanIgnoreException(shift, "工厂对应班次不存在");
-    List<ShiftItem> shiftItemList = this.shiftItemService.list(
-        new LambdaQueryWrapper<ShiftItem>().eq(ShiftItem::getFactoryId, factoryId).eq(ShiftItem::getFactoryId, factoryId));
+    List<ShiftItem> shiftItemList = this.shiftItemService.list(new LambdaQueryWrapper<ShiftItem>().eq(ShiftItem::getShiftId, shift.getId()));
     shift.setShiftItemList(shiftItemList);
     return shift;
   }
