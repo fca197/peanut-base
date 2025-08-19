@@ -87,6 +87,20 @@
         </configuration>
       </plugin>
       <plugin>
+        <artifactId>maven-source-plugin</artifactId>
+        <executions>
+          <execution>
+            <goals>
+              <goal>jar-no-fork</goal>
+            </goals>
+            <id>attach-sources</id>
+            <phase>package</phase>
+          </execution>
+        </executions>
+        <groupId>org.apache.maven.plugins</groupId> <!-- 采用最新稳定版本 -->
+        <version>3.2.1</version>
+      </plugin>
+      <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.11.0</version>
