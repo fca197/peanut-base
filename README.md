@@ -1,3 +1,6 @@
+# 迁移说明
+该代码已停止维护， 请访问 https://gitee.com/slsplatform/peanut-protal-all
+
 # peanut 门户组成部分
 
 ## base 基础配置组建
